@@ -5,7 +5,7 @@ resource "aws_instance" "default" {
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.default.id]
 
-  user_data = file("../user_data.sh")
+  user_data = file("./user_data.sh") # module
 }
 
 resource "aws_security_group" "default" {
@@ -24,6 +24,6 @@ resource "aws_security_group" "default" {
   }
 }
 
-output "example_public_dns" {
-  value = aws_instance.example.public_dns
+output "public_dns" {
+  value = aws_instance.default.public_dns
 }
